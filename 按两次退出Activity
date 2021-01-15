@@ -1,0 +1,13 @@
+    private long firstClickBack = 0;
+    private long secondClickBack = 0;
+    @Override
+    public void onBackPressed() {
+        secondClickBack = SystemClock.elapsedRealtime();
+        long interval = secondClickBack - firstClickBack;
+        if(interval != 0 && interval < 2000) {
+            finish();
+        } else {
+            Toast.makeText(this, R.string.tip_exit, Toast.LENGTH_SHORT).show();
+        }
+        firstClickBack = SystemClock.elapsedRealtime();
+    }
